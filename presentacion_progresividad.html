@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Progresividad en el terreno y en el barrio · Autoconstrucción PBA</title>
+<title>Progresividad: la vivienda, el terreno y el barrio · Autoconstrucción PBA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -116,6 +116,7 @@ nav .links a:hover,nav .links a.active{color:var(--brick)}
 .block .sub{color:var(--ink2);margin:12px 0 0;font-size:15px}
 .block .base{font-size:12px;color:var(--ink3);margin-top:8px;letter-spacing:.02em}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px 28px 30px;box-shadow:var(--shadow)}
+.card.chw{padding:22px 10px 20px}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
 .cols.lean{grid-template-columns:.85fr 1.15fr}
 @media(max-width:780px){.cols,.cols.lean{grid-template-columns:1fr}}
@@ -154,7 +155,12 @@ nav .links a:hover,nav .links a.active{color:var(--brick)}
 .chart{width:100%;height:auto;display:block}
 .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px}
 .legend i{display:inline-flex;gap:8px;align-items:center;font-size:12.5px;color:var(--ink2);font-style:normal}
-.legend i .ln{width:18px;height:3px;border-radius:2px}
+.legend i .ln{width:18px;height:4px;border-radius:2px;flex:0 0 auto}
+.legend i.tog{cursor:pointer;user-select:none;padding:3px 8px;border-radius:30px;border:1px solid transparent;transition:.12s}
+.legend i.tog:hover{border-color:var(--line);background:var(--panel2)}
+.legend i.tog.off{opacity:.4}
+.legend i.tog.off .ln{background:var(--ink3)!important;opacity:.5}
+.legend i.tog.off span:last-child{text-decoration:line-through}
 .legend i .ln.dash{background-image:linear-gradient(90deg,currentColor 55%,transparent 0);background-size:7px 3px;background-repeat:repeat-x;height:3px}
 .note{font-size:12.5px;color:var(--ink3);margin-top:16px;line-height:1.55;max-width:780px}
 .note b{color:var(--ink2);font-weight:600}
@@ -191,6 +197,7 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
     <a href="#terreno">Terreno</a>
     <a href="#vivienda">Vivienda</a>
     <a href="#tenencia">Tenencia</a>
+    <a href="#acceso">Mudanza</a>
     <a href="#obra">La obra</a>
   </div>
 </div></nav>
@@ -222,7 +229,7 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
 <!-- HERO -->
 <header class="hero"><div class="wrap">
   <div class="eyebrow reveal">Encuesta de autoconstrucción · Provincia de Buenos Aires</div>
-  <h1 class="serif reveal">Progresividad<span class="l2">en el terreno y en el barrio</span></h1>
+  <h1 class="serif reveal">Progresividad<span class="l2">la vivienda, el terreno y el barrio</span></h1>
   <p class="lead serif reveal">Analizamos más en profundidad cómo acceden las familias a los terrenos y cómo los habitan con el pasar de los años. Usá el filtro de la derecha para ver cada dato por estrato o por antigüedad del barrio.</p>
   <div class="statrow reveal">
     <div class="s"><div class="v serif" data-val="statN"></div><div class="k">Hogares relevados</div></div>
@@ -344,7 +351,7 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
     <div class="block head reveal">
       <div class="eyebrow slate">Del acceso al papel</div>
       <h3>Años entre la compra del terreno y la primera tenencia</h3>
-      <p class="sub">Del año de acceso al terreno al primer documento (título, boleto, CVF u otro). Valores negativos (tenencia previa a la compra) se cuentan como 0.</p>
+      <p class="sub">Del año de acceso al terreno al primer documento (título, boleto, CVF u otro).</p>
       <div class="base">Base: <span data-val="bAniosTen"></span> hogares con compra y tenencia fechadas · excluye "trámite iniciado"</div>
     </div>
     <div class="kpis reveal">
@@ -352,7 +359,7 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
       <div class="kpi"><div class="v" data-val="mean"></div><div class="l">años · media</div><div class="b">la cola larga estira el promedio</div></div>
       <div class="kpi moss"><div class="v" data-val="anios0"></div><div class="l">obtiene el papel el mismo año</div><div class="b"><span data-val="anios0N"></span> hogares</div></div>
     </div>
-    <div class="card reveal">
+    <div class="card chw reveal">
       <svg class="chart" data-cols="aniosTen" viewBox="0 0 820 320" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="note">Cada columna es un valor exacto de años. El pico en 0 son quienes sacaron el documento el mismo año en que accedieron al terreno.</div>
     </div>
@@ -363,7 +370,7 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
       <div class="lead-stat">
         <div class="v" data-val="primCvf"></div>
         <div class="l">de los hogares tuvo al <b>CVF como su primera tenencia</b>.</div>
-        <div class="n">CVF con el año más temprano (incluye empates) · base <span data-val="bPrim"></span></div>
+        <div class="n">CVF con el año más temprano · base <span data-val="bPrim"></span></div>
       </div>
       <div class="card">
         <div class="eyebrow slate" style="margin-bottom:4px">Primera tenencia</div>
@@ -390,13 +397,13 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
   </div></div>
 </section>
 
-<!-- OBRA -->
-<section id="obra" class="sec alt">
-  <div class="sechead mo"><div class="wrap">
-    <div class="eyebrow slate reveal">Construir, año tras año</div>
-    <h2 class="reveal">La obra</h2>
+<!-- DEL TERRENO A LA CASA -->
+<section id="acceso" class="sec alt">
+  <div class="sechead sl"><div class="wrap">
+    <div class="eyebrow slate reveal">Acceso, origen y mudanza</div>
+    <h2 class="reveal">Del terreno a la casa</h2>
     <div class="rule reveal"></div>
-    <p class="reveal">La vivienda no se hace de una vez: se construye por etapas, a lo largo de los años. Cuándo se levantó cada parte y a qué ritmo avanza la obra desde que llegaron al terreno.</p>
+    <p class="reveal">Con qué se encontraron al llegar al lote y cuánto tardaron en irse a vivir ahí.</p>
   </div></div>
 
   <div class="block"><div class="wrap">
@@ -419,27 +426,54 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
 
   <div class="block"><div class="wrap">
     <div class="block head reveal">
-      <div class="eyebrow slate">Qué se construyó y cuándo</div>
-      <h3>Hitos constructivos por año</h3>
-      <p class="sub">Obras de cada tipo registradas por año (seis hitos estructurales). La etiqueta marca el año pico de cada hito.</p>
+      <div class="eyebrow slate">Cuándo se mudan</div>
+      <h3>¿Cuánto tardan en mudarse?</h3>
+      <p class="sub">Años entre el acceso al terreno y el momento en que el hogar se fue a vivir ahí. La mayoría se muda enseguida: acceder al terreno y habitarlo suelen ser casi el mismo paso.</p>
+      <div class="base">Base: <span data-val="bMud"></span> hogares con acceso y mudanza fechados</div>
     </div>
-    <div class="card reveal">
-      <svg class="chart" data-line="hitos" viewBox="0 0 820 380" preserveAspectRatio="xMidYMid meet"></svg>
-      <div class="legend" data-leg="hitos"></div>
-      <div class="note">Conteo crudo: una vivienda aporta a cada hito que declaró. Las <b>terminaciones y revoques</b> suelen trepar hacia el presente —son la obra que nunca termina—, mientras los hitos estructurales marcan picos en años redondos por el redondeo de la memoria.</div>
+    <div class="kpis reveal">
+      <div class="kpi moss"><div class="v" data-val="mud0"></div><div class="l">se mudó el mismo año que accedió al terreno</div><div class="b"><span data-val="mud0N"></span> hogares</div></div>
+      <div class="kpi"><div class="v" data-val="mudMed"></div><div class="l">años · mediana hasta mudarse</div><div class="b">media <span data-val="mudMean"></span> años</div></div>
     </div>
+    <div class="card chw reveal">
+      <svg class="chart" data-cols="mudanza" viewBox="0 0 820 320" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="note">Cada columna es un valor exacto de años entre acceder al terreno y mudarse. El pico en 0 son quienes se mudaron el mismo año.</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- OBRA -->
+<section id="obra" class="sec">
+  <div class="sechead mo"><div class="wrap">
+    <div class="eyebrow slate reveal">Construir, año tras año</div>
+    <h2 class="reveal">La obra</h2>
+    <div class="rule reveal"></div>
+    <p class="reveal">La vivienda no se hace de una vez: se construye por etapas, a lo largo de los años. Cuándo se levantó cada parte y a qué ritmo avanza la obra desde que llegaron al terreno.</p>
   </div></div>
 
   <div class="block"><div class="wrap">
     <div class="block head reveal">
       <div class="eyebrow slate">El volumen total</div>
       <h3>Total de obras por año</h3>
-      <p class="sub">Las 21 obras sumadas, con su tendencia suavizada (mediana móvil de 3 años). Las líneas verticales marcan crisis y la zona gris es dato aún parcial.</p>
+      <p class="sub">Las 21 obras sumadas por año. La línea punteada muestra cómo habría seguido la obra manteniendo el patrón 2004-2023; las verticales marcan crisis.</p>
     </div>
-    <div class="card reveal">
-      <svg class="chart" data-line="totObras" viewBox="0 0 820 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="card chw reveal">
+      <svg class="chart" data-line="totObras" viewBox="0 0 860 400" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="legend" data-leg="totObras"></div>
-      <div class="note"><b>Ojo:</b> la suba hacia el presente es en parte efecto de exposición (hay más hogares recientes) y de que las fechas lejanas se olvidan. Las caídas en <b>2001-02</b> y <b>2024</b> coinciden con crisis económicas; la zona gris 2025-26 es dato parcial.</div>
+      <div class="note"><b>Ojo:</b> la suba hacia el presente es en parte efecto de exposición (hay más hogares recientes) y de que las fechas lejanas se olvidan. La línea punteada es la tendencia esperada según el patrón 2004-2023; las caídas en <b>2001-02</b> y <b>2024 (Milei)</b> coinciden con crisis económicas.</div>
+    </div>
+  </div></div>
+
+  <div class="block"><div class="wrap">
+    <div class="block head reveal">
+      <div class="eyebrow slate">Qué se construyó y cuándo</div>
+      <h3>Obras por tipo, año a año</h3>
+      <p class="sub">Las obras agrupadas en grandes tipos (preparación del terreno, ambientes base, baño, servicios, ampliación, terminaciones, arreglos) y registradas por año.</p>
+    </div>
+    <div class="card chw reveal">
+      <svg class="chart" data-line="hitos" viewBox="0 0 860 400" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="legend" data-leg="hitos"></div>
+      <div class="note"><b>Tocá cada categoría de la leyenda para prenderla o apagarla.</b> Conteo crudo: una vivienda aporta a cada obra que declaró, agrupada por tipo. Los <b>ambientes base</b> —la suma de toda la estructura (bases, paredes, techo, losa, contrapiso…)— concentran el grueso; los <b>servicios</b>, las <b>ampliaciones</b> y las <b>terminaciones</b> trepan hacia el presente.</div>
     </div>
   </div></div>
 
@@ -455,8 +489,8 @@ path.line{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.
       <div class="kpi alert"><div class="v" data-val="ritmo0c"></div><div class="l">entre quienes arrancaron de cero</div><div class="b">terreno pelado</div></div>
       <div class="kpi"><div class="v" data-val="ritmo0g"></div><div class="l">entre quienes ya tenían algo</div><div class="b">construcción previa en el lote</div></div>
     </div>
-    <div class="card reveal">
-      <svg class="chart" data-line="ritmo" viewBox="0 0 820 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="card chw reveal">
+      <svg class="chart" data-line="ritmo" viewBox="0 0 860 400" preserveAspectRatio="xMidYMid meet"></svg>
       <div class="legend" data-leg="ritmo"></div>
       <div class="note">Se lee directo: el grueso de la obra se concentra en los <b>primeros años</b> tras acceder al terreno y después baja año a año. Los que arrancaron <b>de cero</b> suelen empujar más fuerte al inicio que los que <b>ya tenían algo</b>.</div>
     </div>
@@ -505,6 +539,14 @@ const DB = {"all":{"n":2850,"propTerreno":{"base":2850,"casa":2161,"fam":318,"ot
 
 /* ===== DATOS: progresividad por estado (ejes fijos 1990-2026 y 0-25) ===== */
 const PROG = {"all":{"h":[[16,4,5,3,4,5,8,5,10,6,22,8,17,15,7,17,24,8,23,8,29,16,20,18,22,23,19,14,31,24,29,16,18,11,6,3,3],[10,2,6,9,1,6,14,5,13,4,18,13,7,8,9,19,16,3,12,7,40,18,21,14,17,21,18,19,25,15,43,24,17,16,11,11,3],[14,3,6,1,1,5,9,7,8,5,27,13,13,10,5,16,11,8,13,5,28,12,17,11,18,29,21,10,22,18,28,17,24,19,22,15,7],[6,2,2,1,3,5,2,2,1,2,10,2,7,0,4,12,8,5,8,8,19,9,6,14,8,15,12,9,15,10,25,8,15,16,18,16,7],[7,2,3,0,1,7,12,4,5,8,15,12,12,9,2,13,14,8,8,4,25,8,6,16,10,16,20,5,19,18,20,14,17,10,15,11,7],[10,1,1,2,3,6,6,3,4,9,12,6,7,4,5,15,12,2,6,4,23,4,8,4,5,14,15,7,15,8,25,13,36,22,32,35,21]],"t":[141,37,48,43,34,94,93,55,112,101,238,138,142,113,87,203,185,99,155,86,327,158,199,165,180,272,262,172,287,220,413,260,315,259,259,223,143],"r":{"a":[41.4,21.8,17.8,12.1,9.8,9.9,6.7,4.5,4.5,4.2,6.7,2.6,3.2,3.1,2.3,3.7,3.1,3.1,2.2,2.3,3.2,1.7,2.5,2.7,2.2,2.5],"c":[47.4,24.7,19.3,12.7,9.8,10,5.9,4.8,4.6,4.7,6.5,3,3,3.2,1.8,2.9,2.4,3.5,2.2,2,3.6,2.1,1.7,2.7,1.6,2],"g":[33.4,18.9,16,11.4,9.4,10.2,7.5,4.5,4.8,3.5,7.7,2.3,3.6,3.2,2.1,4.6,3.6,2.6,1.7,2,3.2,1.2,3.4,2.5,2.6,3]}},"e:E1":{"h":[[5,0,1,0,0,1,2,1,2,1,4,0,2,2,0,4,9,0,2,1,4,3,0,1,5,0,1,1,4,0,2,0,0,2,0,0,1],[3,0,1,4,1,2,4,1,3,0,3,1,0,2,3,1,1,0,1,1,8,3,1,2,1,1,2,3,2,3,6,0,0,3,1,1,0],[5,1,1,0,1,2,3,3,2,2,4,4,2,2,1,2,2,2,2,0,2,1,0,1,1,2,3,2,2,1,3,3,1,1,1,2,0],[4,0,1,1,2,1,0,1,1,1,7,2,1,0,3,2,2,0,3,0,11,3,1,3,3,6,2,3,1,0,7,0,4,7,5,2,3],[2,1,2,0,0,2,8,4,1,5,7,5,3,1,2,5,3,3,2,1,7,2,0,3,1,4,5,1,4,3,1,2,3,2,4,3,3],[2,0,0,0,3,5,5,2,1,5,5,2,4,0,2,6,4,1,4,2,3,2,1,2,2,5,4,0,3,1,5,4,5,4,2,6,5]],"t":[36,8,11,12,13,32,37,15,34,34,69,32,24,26,18,49,50,16,37,12,63,27,17,18,27,36,39,23,35,24,48,26,28,32,30,28,29],"r":{"a":[41.2,21.6,16.2,9.9,9.2,12.3,8,4.9,3.8,3.6,8.7,1,3.9,4.7,1.7,3.5,2.2,2.3,4.3,2.4,3.3,0,2.9,3.4,1.5,2.1],"c":[49.6,20.3,15.2,7.2,9.6,9.6,8.4,4.1,2.4,2.7,9.4,0,4.9,3,0,1.1,1.1,3.4,8.2,2.5,6.4,0,0,3.5,1.8,0],"g":[36.9,21.6,17.9,11.6,9.9,14.3,7.5,5.3,4.9,3.9,8.5,1.5,3.2,5.9,2.7,5.1,2.9,1.8,2.5,1.9,1.9,0,4.1,3.4,1.4,3]}},"e:E2":{"h":[[4,0,1,0,1,0,3,2,1,3,2,1,3,5,1,5,4,1,8,4,8,4,6,12,5,9,7,3,6,7,6,5,3,1,0,2,0],[3,0,4,3,0,0,5,0,2,2,3,1,3,0,2,4,7,1,0,2,10,2,6,6,4,7,4,4,6,3,8,10,1,5,4,5,1],[2,1,2,0,0,0,2,0,0,1,4,1,2,2,1,2,2,0,0,0,3,1,5,1,1,5,4,0,6,0,5,2,2,4,4,4,3],[0,0,0,0,0,1,1,0,0,0,1,0,2,0,0,4,3,1,0,3,3,0,0,5,4,6,3,3,3,2,8,3,5,2,3,9,3],[0,0,0,0,0,0,1,0,1,1,3,1,2,1,0,2,1,0,2,2,2,2,1,6,2,3,6,0,3,3,4,2,0,1,1,2,2],[3,1,1,2,0,0,0,1,3,2,0,2,0,1,0,2,2,0,1,0,8,0,1,0,1,4,5,2,4,1,4,0,8,1,9,11,2]],"t":[21,3,18,12,5,9,16,6,11,25,40,21,24,19,11,44,29,13,24,26,62,26,40,57,32,64,57,25,51,27,68,54,38,36,42,64,30],"r":{"a":[43.8,23.1,17.9,12.4,10,10.2,7.7,2.8,4.6,4.4,4.7,2.6,2.8,4.3,3.4,5.3,2.1,1.4,2.5,3.1,4.2,3.8,1.2,3,2.6,3.4],"c":[49.3,26.6,17.3,11.6,10.4,11,6.5,3.1,3.3,5.4,6.1,3.2,2.1,5.7,4,5.3,0.9,2,2.1,3.4,5.7,6.2,0,5.5,2.8,4.3],"g":[37,19.9,17.5,13.6,8.9,9.2,9.4,2.8,6.4,3,3.8,2.4,4.1,3.4,2.6,6.4,3.8,1.1,1.1,2.2,3.4,1.2,1.3,0,1.4,1.6]}},"e:E3":{"h":[[3,1,1,2,0,2,2,1,3,1,8,5,7,4,4,5,3,4,6,1,6,2,4,4,5,1,4,4,9,3,9,3,5,2,3,0,1],[1,0,0,2,0,2,2,1,3,0,7,7,3,2,3,7,3,1,6,0,8,2,6,1,3,0,4,3,6,1,4,2,2,1,2,1,1],[2,0,0,1,0,0,0,1,4,0,8,3,4,1,3,5,4,2,4,1,1,3,2,1,4,4,2,1,2,1,5,2,2,4,4,1,1],[0,2,1,0,0,3,1,1,0,1,1,0,2,0,0,5,0,2,1,4,2,2,0,2,1,1,3,0,6,2,2,2,0,3,3,3,1],[2,0,1,0,1,2,2,0,3,0,1,1,2,2,0,2,0,1,2,1,5,1,0,1,2,3,1,1,4,1,4,3,4,3,2,0,0],[0,0,0,0,0,0,0,0,0,1,2,1,1,1,0,3,2,0,0,0,0,0,2,1,0,1,0,1,2,0,2,3,3,5,5,2,3]],"t":[18,10,6,10,4,19,13,9,29,11,49,43,44,26,23,53,33,29,32,18,41,26,33,16,31,26,26,24,51,13,55,39,36,43,37,19,13],"r":{"a":[33.2,26.2,21.5,15.9,9.7,9,5.9,3,4,2.8,4.5,1.7,1.4,1.4,1.1,2.7,1.5,2.1,0.4,0.5,2,1,0,1.6,0.6,1.2],"c":[36.4,31.1,23.6,19.6,10.3,8.6,6.7,4.2,4.7,2,4.5,2.1,1.6,1.7,1.1,2.4,1.8,2.7,0,0,0,0,0,1.9,1,1],"g":[24.8,19.2,18.9,9.2,9.6,11.7,5.6,1,1,4.1,5.3,1.1,1.2,0,1.3,2.5,0,1.3,1.3,1.4,5.7,2.9,0,1.5,0,1.6]}},"e:E4":{"h":[[2,1,1,0,2,1,1,0,3,1,2,0,1,2,1,3,4,2,2,2,2,5,4,1,3,3,3,3,3,5,6,1,5,0,2,0,1],[1,1,0,0,0,2,2,2,3,2,2,2,0,3,1,6,3,0,0,2,2,7,5,3,4,4,2,4,5,3,10,4,4,3,2,0,0],[1,1,1,0,0,1,1,1,1,1,5,1,0,3,0,2,0,2,1,2,2,2,3,4,3,2,5,2,1,6,2,3,3,3,5,1,2],[1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,1,3,1,3,1,0,3,3,1,0,0,2,1,1,6,6,3,4,2,4,2,0],[2,1,0,0,0,2,0,0,0,2,1,3,3,2,0,2,8,1,0,0,2,3,4,2,2,2,3,2,2,5,4,4,1,2,1,0,1],[1,0,0,0,0,0,0,0,0,0,3,1,0,0,0,2,1,0,1,0,2,0,0,0,0,2,0,1,2,1,6,2,7,2,5,4,5]],"t":[32,6,3,2,8,18,7,8,19,13,33,16,18,20,18,38,41,21,22,13,39,33,47,37,27,44,52,46,55,59,88,44,64,40,47,35,32],"r":{"a":[41.3,21.4,18.1,13.6,10.8,12.2,7.4,5.1,5.7,4.6,8.9,5.7,2.7,3.6,2.6,4.2,5.4,4.4,2.8,1.8,3.2,4.9,2.2,4,4,2.6],"c":[46.4,22.6,19.7,14.3,11.8,14,6.5,4.9,5.7,6.6,8.6,5.5,3.9,4.1,2.9,2.3,0.8,3.7,1.9,0,3.1,5.6,3.5,2.4,2.4,1.3],"g":[34.4,21,12.2,11.8,7.3,9.4,7.8,7.1,6.3,1.1,11,6.8,1.2,3.7,1.3,7.5,10.4,3.4,1.8,1.9,4.3,4.9,0,9.4,9.4,3.3]}},"e:E5":{"h":[[1,1,1,1,0,0,0,1,1,0,5,2,2,2,1,0,3,1,2,0,5,2,6,0,4,7,3,3,7,5,2,5,3,4,1,0,0],[1,1,1,0,0,0,1,1,1,0,3,2,1,1,0,1,2,0,3,0,8,2,2,1,3,7,3,4,4,2,11,5,4,2,2,1,1],[4,0,2,0,0,2,3,2,1,0,4,3,4,2,0,5,2,2,2,0,14,3,5,3,5,13,4,4,7,3,9,4,11,6,7,2,1],[1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,2,0,2,2,0,2,1,2,3,0,1,0,1,0,3,0,0],[0,0,0,0,0,0,1,0,0,0,2,2,1,2,0,1,1,1,2,0,7,0,1,1,0,2,4,1,1,3,5,2,6,1,5,2,1],[2,0,0,0,0,1,1,0,0,0,1,0,1,1,2,2,2,1,0,1,5,0,2,1,2,0,4,2,2,3,7,3,4,4,5,6,4]],"t":[23,9,10,6,0,9,18,13,15,7,31,25,18,15,12,17,25,12,24,8,78,23,50,22,42,72,61,45,57,48,102,62,89,69,71,32,29],"r":{"a":[44.4,17.7,15.3,9.2,8.7,7,6.1,6.1,4.6,4.7,5.5,2.6,3.6,1.5,2.7,3.7,4.9,5.7,1,3,4.1,0.6,4.7,2.4,3.1,1.9],"c":[52.5,21.5,18.6,8.2,7.6,7.8,3.9,6.4,5.7,5.7,4.9,4.1,2.6,2.7,1.4,3.8,7.4,6.1,1.8,3.8,5.8,0,4.3,2.2,1.2,1.2],"g":[34.5,13.2,12.3,11.3,10.2,6.2,8.6,6.3,4.1,3.4,6.4,1,5.4,0,0,2.5,1.4,5.7,0,1.5,1.6,0,7.1,1.8,5.6,3.8]}},"e:E6":{"h":[[1,1,0,0,1,1,0,0,0,0,1,0,2,0,0,0,1,0,3,0,4,0,0,0,0,3,1,0,2,4,4,2,2,2,0,1,0],[1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,2,2,4,2,1,1,2,2,3,1,2,3,4,3,6,2,0,3,0],[0,0,0,0,0,0,0,0,0,1,2,1,1,0,0,0,1,0,4,2,6,2,2,1,4,3,3,1,4,7,4,3,5,1,1,5,0],[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,1,0,1,0,0,1,0,1,0,1,0,1,2,0,0,0],[1,0,0,0,0,1,0,0,0,0,1,0,1,1,0,1,1,2,0,0,2,0,0,3,3,2,1,0,5,3,2,1,3,1,2,4,0],[2,0,0,0,0,0,0,0,0,1,1,0,1,1,1,0,1,0,0,1,5,2,2,0,0,2,2,1,2,2,1,1,9,6,6,6,2]],"t":[11,1,0,1,4,7,2,4,4,11,16,1,14,7,5,2,7,8,16,9,44,23,12,15,21,30,27,9,38,49,52,35,60,39,32,45,10],"r":{"a":[44.7,21.7,18.7,12.7,10.9,8.2,3.2,5.3,4.3,6.5,9.5,1.6,6.8,2.8,2,1,3.2,3.9,1.3,4.5,1.5,0,7,0,1.9,8.2],"c":[53,24.6,19.8,14.2,9.2,8,2.8,6.3,4.4,5.7,7.1,1.3,4.3,1.6,0,1.9,2,2.5,0,5.4,0,0,3,0,0,7.1],"g":[25.9,17.7,16.7,9.6,10,6.2,3.3,3.6,5.6,6,16.7,2.4,10.5,2.7,5.7,0,6.1,7.1,3.7,4.3,4.5,0,null,null,null,null]}},"a:0":{"h":[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,2,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,0,2,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,0,0,1,0,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,1,2,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0]],"t":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,5,13,13,7,6,12,13],"r":{"a":[44.4,26.5,12.1,3.2,13.8,14.3,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"c":[44.8,28.6,14.8,3.8,16.7,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"g":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]}},"a:1":{"h":[[0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,2,2,10,3,3,5,3,10,5,9,7,3,2,1,0,1],[0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,1,0,0,1,4,2,4,6,2,7,5,11,6,3,3,1,1,0],[0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,1,3,2,4,1,4,6,7,5,4,3,5,3,2],[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,2,3,3,5,3,3,3,3,3,1],[0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,1,1,0,6,4,1,2,0,2,3,1,5,2,2,1,3,1],[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,2,1,2,5,1,3,8,3]],"t":[1,1,0,1,0,2,2,2,0,0,6,10,0,3,1,2,0,0,1,3,5,10,9,46,31,32,39,26,58,45,81,86,49,54,38,49,34],"r":{"a":[53.8,25.6,24.2,18.8,13.4,12,11.5,9.1,6.1,2.9,5.5,3.8,9.7,3.7,2.9,12.5,9.5,null,null,null,null,null,null,null,null,null],"c":[53.7,28.1,22.8,14.6,13.3,13.7,12.9,10.3,5.6,2.5,2.9,5.1,8.5,5,0,null,null,null,null,null,null,null,null,null,null,null],"g":[56.3,21.7,24.4,34.2,12.5,3.8,4.3,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]}},"a:2":{"h":[[3,0,0,0,1,1,3,0,3,2,5,4,6,6,3,2,9,4,9,2,16,6,10,4,10,9,7,2,12,7,5,2,1,1,4,1,1],[0,0,0,1,0,0,4,2,3,1,3,4,3,1,1,2,8,0,7,1,16,6,11,5,6,11,4,2,11,2,9,4,3,3,5,4,0],[2,0,0,1,0,0,3,2,1,1,4,5,4,2,2,4,5,2,6,1,8,4,6,3,6,19,7,4,9,3,7,3,6,5,10,6,2],[1,1,0,0,0,2,0,0,0,0,0,0,3,0,0,3,4,0,2,3,7,1,3,6,3,5,4,3,8,3,5,3,1,5,4,5,2],[0,0,0,0,0,1,1,0,0,2,1,2,3,1,0,1,2,4,3,1,2,3,1,5,3,7,6,3,6,4,5,5,6,0,7,1,1],[1,0,0,0,0,0,0,0,0,0,3,1,1,0,0,2,4,0,0,3,5,1,3,1,1,2,3,3,5,2,7,1,5,6,6,7,5]],"t":[23,7,1,6,2,10,17,12,20,16,38,26,38,28,19,37,54,28,65,30,115,55,81,59,59,120,73,49,105,50,89,47,68,61,81,73,32],"r":{"a":[48.9,20.4,17,10.6,9.9,8.4,6.3,4.8,3.6,4.5,6.5,2,4,2.3,1.8,2.9,3.1,3.6,2.6,1.9,1,1.1,0.6,1.9,2.1,3.1],"c":[53.6,21.7,16.6,10.7,9.8,8.6,5.1,5.3,4.3,5.2,6.3,2.1,4.2,2.4,2.2,2.3,3,4,2.5,0.7,1.5,1.7,0.9,1.9,1,0],"g":[37.4,18.6,18,9,8.6,8.3,8,4,1.7,2.7,7.6,2,4.4,1.2,1.2,5.6,4.7,3.6,1.9,4.1,0,0,0,2.6,5.4,9.4]}},"a:3":{"h":[[6,2,2,1,2,2,2,4,6,2,11,0,1,3,1,8,11,1,8,3,9,4,6,1,3,4,1,5,6,5,7,2,8,5,0,0,1],[5,2,4,5,0,4,4,1,3,1,9,2,1,3,4,8,4,0,2,4,11,8,7,1,5,4,2,9,5,4,14,3,4,5,2,3,1],[4,3,1,0,0,4,3,1,3,3,14,2,1,4,1,5,3,2,3,4,9,5,5,3,8,2,2,3,3,6,6,4,6,6,2,2,1],[2,1,0,1,2,1,2,0,1,1,5,1,3,0,3,5,3,2,2,4,4,7,2,6,1,2,4,1,4,2,10,1,5,5,8,4,2],[3,1,1,0,0,4,5,1,3,2,6,5,5,6,0,8,12,2,2,2,13,4,4,2,2,3,2,2,8,6,8,1,4,7,3,4,2],[6,0,1,2,1,4,2,1,4,2,2,1,1,2,3,5,3,0,4,0,10,1,2,1,1,2,6,4,5,1,9,4,17,11,12,6,7]],"t":[57,15,17,22,16,45,36,20,59,44,107,53,34,40,39,90,83,29,41,33,106,57,61,26,57,53,75,60,78,61,143,56,115,94,76,49,42],"r":{"a":[39,21.5,17.3,11.6,10.8,10.7,7.6,3.9,5.1,4.7,6.9,2.7,2,3.3,2.3,3.6,3.5,2.4,2.2,2.5,4.7,3.3,3.2,3.9,2.6,2.1],"c":[44.1,22.5,20.3,13.8,11,10.1,5.1,3.8,4.8,5.2,6.7,3.4,1.4,3.6,1.5,2.3,2.8,3,2.1,2.7,4.6,4,2.6,4.3,2.2,2.2],"g":[33.9,20.1,14.5,9.8,11.2,10.3,9.6,4.3,5.9,3.8,7.6,2.4,2.1,3.1,1.8,4.8,4.3,2,1.6,1.6,5.7,2.4,3.7,3.3,3.4,2.2]}},"a:4":{"h":[[7,1,3,2,1,2,3,1,1,2,5,3,10,6,3,7,4,3,6,2,4,4,2,3,6,7,6,4,3,7,8,5,5,2,1,0,0],[5,0,2,3,1,2,6,2,7,2,5,6,3,3,4,9,4,3,3,1,13,4,2,4,4,2,6,6,2,4,8,11,7,2,3,1,1],[8,0,5,0,1,1,3,4,4,1,9,5,8,3,2,7,3,4,4,0,10,3,6,4,1,6,8,2,6,2,7,3,8,5,4,4,1],[3,0,2,0,1,2,0,2,0,1,4,1,1,0,1,4,1,3,4,1,8,1,1,1,3,5,3,3,0,2,5,1,5,2,1,2,1],[4,1,2,0,1,2,6,3,2,4,8,3,4,2,2,4,0,2,2,1,9,0,1,3,1,5,10,0,3,5,6,1,4,1,3,1,2],[3,1,0,0,2,2,4,2,0,7,7,3,5,2,2,7,5,2,2,1,7,2,3,2,3,9,6,0,4,3,8,6,9,4,11,13,6]],"t":[60,14,30,14,16,37,38,21,33,41,87,49,70,42,28,74,48,42,48,20,101,36,48,34,33,67,75,37,46,61,95,58,70,43,58,40,22],"r":{"a":[33.4,22,17.2,12.3,7.2,9.4,4.7,3.7,4.3,3.8,6.8,2.7,3.2,3.4,2.5,3.8,2.5,3.7,2,2.3,2.4,0.5,2.6,1.9,1.9,2.8],"c":[39.6,29.7,20.1,13.7,5.6,9.1,4.3,2.8,4.1,3.9,7.4,3.1,2.3,3.4,2,4,1.5,3.9,2.3,2.4,3.6,0,1.4,1.4,1.4,2.9],"g":[27.8,17.8,15.7,11.6,7.8,11.3,5.6,4.8,4.9,3.4,7.6,2.5,4,4.1,2.3,3.5,2.4,2.9,1.7,1.8,1.4,0.5,4,2,1.5,2.6]}}};
+
+/* ===== DATOS: mudanza (años entre acceso y mudanza) por estado ===== */
+const MUD = {"all":{"base":2323,"hist":[1524,255,153,78,43,48,36,21,15,11,24,7,2,7,7,7,85],"med":0,"mean":2,"pct0":65.6},"e:E1":{"base":398,"hist":[294,37,27,6,3,7,4,3,0,3,1,1,0,0,1,0,11],"med":0,"mean":1.3,"pct0":73.9},"e:E2":{"base":429,"hist":[303,38,24,5,7,6,8,3,4,3,5,1,0,0,1,3,18],"med":0,"mean":1.9,"pct0":70.6},"e:E3":{"base":392,"hist":[214,44,34,29,14,15,12,4,4,0,4,2,1,3,0,1,11],"med":0,"mean":2.3,"pct0":54.6},"e:E4":{"base":392,"hist":[245,52,31,12,7,10,4,4,1,2,4,2,0,2,1,1,14],"med":0,"mean":2.1,"pct0":62.5},"e:E5":{"base":475,"hist":[334,47,13,16,6,8,4,5,4,2,5,1,1,1,1,1,26],"med":0,"mean":2.6,"pct0":70.3},"e:E6":{"base":237,"hist":[134,37,24,10,6,2,4,2,2,1,5,0,0,1,3,1,5],"med":0,"mean":1.8,"pct0":56.5},"a:0":{"base":36,"hist":[29,1,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0],"med":0,"mean":0.4,"pct0":80.6},"a:1":{"base":223,"hist":[148,30,15,10,7,2,5,2,1,0,1,0,0,0,0,0,2],"med":0,"mean":1,"pct0":66.4},"a:2":{"base":593,"hist":[411,70,28,16,10,7,9,10,6,4,3,0,1,3,2,1,12],"med":0,"mean":1.5,"pct0":69.3},"a:3":{"base":776,"hist":[504,85,63,23,15,23,4,5,2,3,8,4,0,1,3,4,29],"med":0,"mean":1.9,"pct0":64.9},"a:4":{"base":695,"hist":[432,69,42,28,11,16,18,4,6,4,12,3,1,3,2,2,42],"med":0,"mean":3,"pct0":62.2}};
+
+/* ===== DATOS: obras agrupadas por tipo (categorías), ejes 1990-2026 ===== */
+const PROGH = {"all":{"prep":[13,3,5,3,6,10,6,2,8,13,23,16,9,14,12,13,21,7,8,9,35,13,11,13,14,20,28,15,25,18,34,25,19,22,10,19,13],"base":[67,17,27,19,14,37,55,27,52,36,117,56,69,53,35,98,89,41,88,37,167,80,89,83,95,134,109,78,143,109,181,103,104,91,100,68,33],"banio":[4,1,1,2,1,3,6,2,6,2,14,7,6,3,4,15,5,8,12,4,17,9,19,7,12,21,26,6,19,15,28,27,31,21,19,15,7],"serv":[17,6,6,8,4,11,5,9,20,13,28,21,26,12,10,23,25,19,15,16,27,21,25,26,25,39,34,27,36,28,56,44,48,50,42,31,19],"ampl":[20,4,7,4,3,15,11,8,12,17,29,20,18,18,13,31,15,14,15,10,45,21,32,15,21,27,35,22,35,25,46,33,55,38,38,26,32],"term":[10,1,1,2,3,6,6,3,4,9,12,6,7,4,5,15,12,2,6,4,23,4,8,4,5,14,15,7,15,8,25,13,36,22,32,35,21],"arr":[1,3,1,3,0,3,0,1,4,6,9,4,0,5,1,5,5,1,4,1,5,3,7,4,1,9,4,7,7,5,18,4,16,8,14,18,12],"otro":[9,2,0,2,3,9,4,3,6,5,6,8,7,4,7,3,13,7,7,5,8,7,8,13,7,8,11,10,7,12,25,11,6,7,4,11,6]},"e:E1":{"prep":[1,0,0,0,1,1,3,0,3,3,6,3,1,4,1,6,12,1,3,2,4,2,1,0,3,3,4,2,2,1,5,2,1,3,2,1,4],"base":[22,4,7,6,5,12,21,11,19,13,32,12,11,11,11,20,22,8,19,4,35,17,3,12,15,16,17,13,18,8,23,5,9,16,16,9,10],"banio":[0,0,0,1,0,1,2,1,1,2,3,2,1,1,0,3,0,1,2,1,2,1,3,1,2,2,3,1,2,2,0,4,1,2,1,0,1],"serv":[5,1,1,2,1,4,1,0,2,2,11,1,2,2,0,6,3,3,3,2,5,2,3,1,1,3,2,1,2,4,5,4,5,2,4,3,2],"ampl":[6,1,2,2,2,8,4,1,5,6,7,9,4,5,3,7,6,1,4,1,11,2,5,2,4,4,6,1,4,4,6,6,5,3,3,6,4],"term":[2,0,0,0,3,5,5,2,1,5,5,2,4,0,2,6,4,1,4,2,3,2,1,2,2,5,4,0,3,1,5,4,5,4,2,6,5],"arr":[0,2,1,1,0,0,0,0,3,3,4,2,0,2,0,1,1,0,1,0,2,1,0,0,0,2,1,4,0,1,2,0,2,1,2,2,2],"otro":[0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,0,2,1,1,0,1,0,1,0,0,1,2,1,4,3,2,1,0,1,0,1,1]},"e:E2":{"prep":[3,0,3,2,1,2,0,1,1,4,2,3,1,1,1,1,0,1,1,4,6,4,1,5,2,4,4,2,5,1,6,3,2,7,0,6,2],"base":[11,1,7,5,1,3,13,2,4,11,21,6,14,10,6,20,17,4,13,13,32,13,24,32,18,37,26,11,26,18,38,28,11,13,14,25,9],"banio":[0,0,1,0,1,0,1,0,1,0,2,3,0,0,1,4,1,2,2,2,2,1,2,0,3,5,2,1,3,3,1,3,4,1,2,4,0],"serv":[1,0,3,2,1,1,0,1,0,1,5,3,4,2,2,4,3,3,2,1,1,4,3,11,5,5,8,5,5,2,7,11,5,9,8,8,5],"ampl":[2,1,3,0,1,1,1,0,0,5,8,1,5,3,1,10,3,3,4,1,11,1,5,4,3,4,8,4,4,0,5,5,5,5,6,5,9],"term":[3,1,1,2,0,0,0,1,3,2,0,2,0,1,0,2,2,0,1,0,8,0,1,0,1,4,5,2,4,1,4,0,8,1,9,11,2],"arr":[0,0,0,1,0,2,0,1,1,1,1,1,0,1,0,2,1,0,1,0,2,1,2,0,0,5,3,0,2,0,3,1,3,0,2,4,3],"otro":[1,0,0,0,0,0,1,0,1,1,1,2,0,1,0,1,2,0,0,5,0,2,2,5,0,0,1,0,2,2,4,3,0,0,1,1,0]},"e:E3":{"prep":[4,2,2,1,1,1,2,1,2,2,6,6,4,4,3,1,4,4,1,1,8,3,3,1,5,5,3,3,3,2,2,9,6,3,2,2,0],"base":[10,3,3,6,1,10,9,4,14,3,28,18,23,10,11,29,12,12,24,8,25,11,14,9,20,12,16,12,30,10,28,14,15,17,18,7,6],"banio":[0,0,0,1,0,0,0,0,2,0,2,1,1,1,0,4,0,1,1,1,2,0,1,1,0,1,1,0,1,0,1,2,2,1,2,2,2],"serv":[0,3,1,2,2,5,1,3,8,1,5,11,10,5,4,7,7,9,4,8,4,5,3,3,5,4,3,5,10,0,9,7,1,11,5,2,1],"ampl":[2,1,0,0,0,2,0,0,2,3,4,4,4,4,3,6,3,2,1,0,2,6,8,0,0,3,3,3,5,0,6,3,5,3,3,1,0],"term":[0,0,0,0,0,0,0,0,0,1,2,1,1,1,0,3,2,0,0,0,0,0,2,1,0,1,0,1,2,0,2,3,3,5,5,2,3],"arr":[0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,2,2,0,0,0,0,0,2,1,0,0,0,0,0,0,3,0,3,2,2,0,0],"otro":[2,1,0,0,0,1,1,1,1,0,1,2,1,0,1,1,3,1,1,0,0,1,0,0,1,0,0,0,0,1,4,1,1,1,0,3,1]},"e:E4":{"prep":[4,0,0,0,1,3,0,0,1,1,4,3,2,2,3,4,3,1,1,1,8,0,2,4,2,4,4,4,7,7,8,4,4,3,2,4,5],"base":[11,5,3,0,5,6,4,3,8,7,12,7,5,11,6,20,23,9,10,7,13,21,24,13,13,17,21,17,17,30,35,18,20,16,19,6,4],"banio":[2,0,0,0,0,0,0,0,1,0,4,0,0,0,1,4,2,3,3,0,3,2,4,2,1,5,8,0,8,5,10,4,8,6,5,3,1],"serv":[5,1,0,0,0,1,1,1,3,3,4,1,5,2,3,2,7,1,1,2,3,3,8,8,4,8,8,8,11,8,12,11,13,4,6,7,5],"ampl":[5,0,0,1,0,3,1,2,2,0,3,3,1,3,2,5,1,5,2,3,6,5,5,3,4,6,6,10,10,5,8,3,10,5,9,4,4],"term":[1,0,0,0,0,0,0,0,0,0,3,1,0,0,0,2,1,0,1,0,2,0,0,0,0,2,0,1,2,1,6,2,7,2,5,4,5],"arr":[0,0,0,1,0,0,0,0,0,0,2,0,0,1,0,0,1,0,1,0,0,0,1,2,1,0,0,1,0,1,2,1,1,3,1,4,4],"otro":[4,0,0,0,2,5,1,2,4,2,1,1,5,1,3,1,3,2,3,0,4,2,3,5,2,2,5,5,0,2,7,1,1,1,0,3,4]},"e:E5":{"prep":[1,1,0,0,0,2,1,0,0,0,3,1,1,1,3,1,1,0,2,1,5,2,3,1,1,3,8,2,4,5,9,4,4,3,3,2,1],"base":[10,3,7,1,0,3,7,6,6,1,17,12,10,9,1,8,12,4,12,1,40,10,21,11,18,39,19,22,32,22,37,24,28,17,27,5,4],"banio":[2,1,0,0,0,1,2,0,1,0,0,1,2,1,1,0,1,1,3,0,4,2,7,2,4,5,10,4,4,2,11,8,11,7,7,3,2],"serv":[3,1,1,2,0,0,2,4,6,3,2,5,4,1,1,3,4,1,2,3,13,3,6,1,6,12,10,5,5,6,16,7,15,18,9,5,5],"ampl":[3,1,2,1,0,0,5,3,2,1,5,3,0,1,2,3,2,1,3,2,7,4,7,2,8,7,7,4,5,5,15,9,20,16,13,7,11],"term":[2,0,0,0,0,1,1,0,0,0,1,0,1,1,2,2,2,1,0,1,5,0,2,1,2,0,4,2,2,3,7,3,4,4,5,6,4],"arr":[1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,1,0,2,1,0,1,0,2,4,2,2,2,4,1,5,3,2],"otro":[1,1,0,2,0,2,0,0,0,1,2,2,0,1,2,0,3,3,2,0,3,2,2,3,3,5,3,4,1,3,5,5,3,3,2,1,0]},"e:E6":{"prep":[0,0,0,0,2,1,0,0,1,3,2,0,0,2,1,0,1,0,0,0,4,2,1,2,1,1,5,2,4,2,4,3,2,3,1,4,1],"base":[3,1,0,1,2,3,1,1,1,1,7,1,6,2,0,1,3,4,10,4,22,8,3,6,11,13,10,3,20,21,20,14,21,12,6,16,0],"banio":[0,0,0,0,0,1,1,1,0,0,3,0,2,0,1,0,1,0,1,0,4,3,2,1,2,3,2,0,1,3,5,6,5,4,2,3,1],"serv":[3,0,0,0,0,0,0,0,1,3,1,0,1,0,0,1,1,2,3,0,1,4,2,2,4,7,3,3,3,8,7,4,9,6,10,6,1],"ampl":[2,0,0,0,0,1,0,2,1,2,2,0,4,2,2,0,0,2,1,3,8,3,2,4,2,3,5,0,7,11,6,7,10,6,4,3,4],"term":[2,0,0,0,0,0,0,0,0,1,1,0,1,1,1,0,1,0,0,1,5,2,2,0,0,2,2,1,2,2,1,1,9,6,6,6,2],"arr":[0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,1,0,0,1,1,6,0,3,1,2,5,1],"otro":[1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,0,1,1,1,2,0]},"a:0":{"prep":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,4,1,0,0,3],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,5,3,5,4,9,5],"banio":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1],"serv":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,5,1,1,0,2],"ampl":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,1,1],"term":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],"arr":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"otro":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,2,1,0,0,1,1]},"a:1":{"prep":[0,0,0,0,0,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,1,3,2,5,4,2,0,3,6,1,11,13,1,7,1,6,6],"base":[0,1,0,1,0,0,1,0,0,0,3,5,0,2,0,0,0,0,1,2,2,5,4,23,16,19,21,11,32,28,42,36,17,18,17,12,6],"banio":[0,0,0,0,0,0,1,1,0,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,2,2,5,0,4,1,7,8,7,8,5,6,1],"serv":[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,11,5,4,5,6,5,6,8,15,9,14,5,8,3],"ampl":[0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,2,2,2,6,0,5,1,5,6,7,5,6,4,12],"term":[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,2,1,2,5,1,3,8,3],"arr":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,2,1,0,0,1,0,1,4,1],"otro":[1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,4,2,1,2,5,3,5,7,6,2,1,0,1,2]},"a:2":{"prep":[2,1,0,1,0,0,1,0,0,3,5,2,2,4,2,1,8,3,2,2,18,3,5,6,4,12,8,7,14,7,6,6,4,3,2,6,1],"base":[10,2,0,3,1,6,12,5,7,7,17,16,21,13,9,16,31,13,36,10,58,24,40,27,39,65,31,20,55,27,38,19,19,19,38,24,8],"banio":[2,1,0,0,0,0,1,0,2,0,1,1,2,0,1,5,1,1,7,1,10,4,7,3,5,11,7,2,6,3,4,6,7,4,6,5,2],"serv":[4,1,0,1,0,1,0,3,5,3,5,3,5,3,2,4,4,7,10,5,8,11,11,8,6,15,10,9,15,6,15,9,11,14,12,12,6],"ampl":[1,1,1,0,0,1,2,2,4,1,4,1,4,6,2,8,2,3,5,7,12,6,11,8,3,11,9,5,6,4,8,5,16,13,13,9,4],"term":[1,0,0,0,0,0,0,0,0,0,3,1,1,0,0,2,4,0,0,3,5,1,3,1,1,2,3,3,5,2,7,1,5,6,6,7,5],"arr":[0,1,0,0,0,1,0,0,0,1,1,0,0,1,1,1,1,0,0,1,2,1,3,2,0,1,3,1,3,0,5,0,4,1,1,6,5],"otro":[3,0,0,1,1,1,1,2,2,1,2,2,3,1,2,0,3,1,5,1,2,5,1,4,1,3,2,2,1,1,6,1,2,1,3,4,1]},"a:3":{"prep":[8,0,2,2,2,6,2,1,4,8,8,9,3,6,6,7,10,2,5,2,8,4,2,2,4,3,12,1,0,5,12,3,7,9,3,4,2],"base":[26,10,8,8,7,18,21,7,26,16,58,12,15,19,13,43,42,9,20,18,58,34,30,16,22,21,20,28,36,27,58,16,33,33,19,14,8],"banio":[1,0,0,1,1,1,2,1,3,1,6,4,1,2,1,7,4,3,3,2,1,3,6,1,5,4,10,2,7,6,12,10,9,5,4,3,3],"serv":[8,3,2,4,2,4,3,5,12,4,11,14,10,2,5,10,11,4,2,7,10,4,6,2,12,11,11,8,10,9,24,9,15,16,18,7,5],"ampl":[6,1,3,3,2,6,5,3,4,8,15,8,2,5,8,14,8,6,4,2,14,10,13,0,9,7,10,12,18,11,16,9,23,13,11,7,11],"term":[6,0,1,2,1,4,2,1,4,2,2,1,1,2,3,5,3,0,4,0,10,1,2,1,1,2,6,4,5,1,9,4,17,11,12,6,7],"arr":[0,1,1,2,0,2,0,1,3,3,6,2,0,2,0,2,1,1,2,0,1,1,0,1,1,2,0,3,2,0,7,4,10,5,8,5,4],"otro":[2,0,0,0,1,4,1,1,3,2,1,3,2,2,3,2,4,4,1,2,4,0,2,3,3,3,6,2,0,2,5,1,1,2,1,3,2]},"a:4":{"prep":[3,2,3,0,4,3,3,1,4,2,9,3,4,4,4,5,3,2,1,4,8,3,2,0,2,3,8,4,5,5,4,2,3,2,4,3,1],"base":[31,4,19,7,6,13,21,15,19,13,39,23,33,19,13,39,16,19,31,7,49,17,15,17,18,29,37,19,20,26,41,27,32,16,22,9,6],"banio":[1,0,1,1,0,2,2,0,1,1,6,2,3,1,1,3,0,4,2,1,6,1,5,2,0,4,4,2,2,5,5,2,8,4,3,1,0],"serv":[5,2,4,3,2,6,2,1,3,6,12,3,11,7,3,9,10,8,3,4,9,5,8,5,2,9,8,4,6,7,8,9,8,5,6,4,3],"ampl":[13,2,3,1,1,8,4,2,4,8,9,11,12,6,3,9,5,5,6,1,18,5,8,5,7,7,10,5,6,9,17,11,9,7,8,5,4],"term":[3,1,0,0,2,2,4,2,0,7,7,3,5,2,2,7,5,2,2,1,7,2,3,2,3,9,6,0,4,3,8,6,9,4,11,13,6],"arr":[1,1,0,1,0,0,0,0,1,2,2,2,0,2,0,1,3,0,2,0,2,1,4,1,0,5,1,2,0,4,6,0,1,2,4,3,2],"otro":[3,2,0,1,1,3,2,0,1,2,3,2,2,1,2,1,6,2,1,2,2,2,3,2,1,1,1,1,3,2,6,1,0,3,0,2,0]}};
+const HCAT=[{k:'base',l:'Ambientes base',c:'#A6432E'},{k:'serv',l:'Servicios',c:'#2F5063'},{k:'ampl',l:'Ampliación',c:'#5E7346'},{k:'term',l:'Terminaciones',c:'#D99A2B'},{k:'banio',l:'Baño',c:'#3E8C8C'},{k:'prep',l:'Preparación del terreno',c:'#7A5C8E'},{k:'arr',l:'Arreglos',c:'#C4715C'},{k:'otro',l:'Otro',c:'#B0A999'}];
+let hitosHidden=new Set();
 
 /* ===== etiquetas de estados ===== */
 const STFULL={all:'Todos los hogares','e:E1':'1er cordón del Conurbano','e:E2':'2do cordón del Conurbano','e:E3':'3er cordón del Conurbano','e:E4':'Interior grande (+200 mil hab.)','e:E5':'Interior mediano (50–200 mil hab.)','e:E6':'Interior pequeño (−50 mil hab.)','a:0':'Barrios de menos de 5 años','a:1':'Barrios de hasta 15 años','a:2':'Barrios de hasta 25 años','a:3':'Barrios de 25 a 45 años','a:4':'Barrios de más de 45 años'};
@@ -573,6 +615,7 @@ const pn=v=>v==null?'—':comma(v)+'%';
 const getP=(o,p)=>p.split('.').reduce((a,k)=>a?a[k]:undefined,o);
 function niceStep(v){if(v<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(v/4)));const n=v/4/p;const m=n<1.5?1:n<3?2:n<7?5:10;return m*p;}
 function movMedian(pts,win){const h=Math.floor(win/2),out=[];for(let i=0;i<pts.length;i++){const s=[];for(let j=-h;j<=h;j++){const k=i+j;if(k>=0&&k<pts.length)s.push(pts[k][1]);}s.sort((a,b)=>a-b);const m=s.length%2?s[(s.length-1)/2]:(s[s.length/2-1]+s[s.length/2])/2;out.push([pts[i][0],m]);}return out;}
+function linReg(pts){const n=pts.length;if(!n)return{a:0,b:0};let sx=0,sy=0,sxy=0,sxx=0;pts.forEach(([x,y])=>{sx+=x;sy+=y;sxy+=x*y;sxx+=x*x;});const d=n*sxx-sx*sx||1;const b=(n*sxy-sx*sy)/d;return{a:(sy-b*sx)/n,b};}
 
 /* ===== build bars once ===== */
 function buildBars(){
@@ -611,27 +654,32 @@ function drawDonut(key,S){
 }
 
 /* ===== histograma años tenencia ===== */
+const COLSSPEC={aniosTen:{get:S=>DB[window.ST].aniosTen.hist,axis:'AÑOS HASTA LA PRIMERA TENENCIA'},
+ mudanza:{get:S=>MUD[window.ST].hist,axis:'AÑOS ENTRE ACCEDER AL TERRENO Y MUDARSE'}};
 function drawHist(S){
- const svg=document.querySelector('[data-cols="aniosTen"]'); if(!svg)return;
- const hist=S.aniosTen.hist, base=hist.reduce((a,b)=>a+b,0);
  const labels=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','+15'];
- svg.innerHTML='';
- const W=820,H=320,m={t:16,r:16,b:46,l:48},iw=W-m.l-m.r,ih=H-m.t-m.b;
- const max=Math.max(1,...hist),n=hist.length,gap=10,bw=(iw-gap*(n-1))/n;
- for(let i=0;i<=4;i++){const v=max/4*i,y=m.t+ih-(v/max)*ih;
-   svg.appendChild(el('line',{x1:m.l,y1:y,x2:W-m.r,y2:y,stroke:C.line2,'stroke-width':1}));
-   svg.appendChild(el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':11,fill:C.ink3,'font-family':'Inter'},Math.round(v)));}
- hist.forEach((v,i)=>{const x=m.l+i*(bw+gap),h=(v/max)*ih,y=m.t+ih-h,col=i===0?C.moss:C.slate2;
-   svg.appendChild(el('rect',{x,y,width:bw,height:h,rx:3,fill:col}));
-   svg.appendChild(el('text',{x:x+bw/2,y:y-6,'text-anchor':'middle','font-size':11,'font-family':'Fraunces,serif','font-weight':600,fill:'#241F18'},fp(v,base)));
-   svg.appendChild(el('text',{x:x+bw/2,y:H-m.b+18,'text-anchor':'middle','font-size':11.5,fill:C.ink3,'font-family':'Inter'},labels[i]));});
- svg.appendChild(el('text',{x:m.l+iw/2,y:H-6,'text-anchor':'middle','font-size':11.5,fill:C.ink3,'font-family':'Inter','font-weight':600,'letter-spacing':'.03em'},'AÑOS HASTA LA PRIMERA TENENCIA'));
+ document.querySelectorAll('[data-cols]').forEach(svg=>{
+   const spec=COLSSPEC[svg.dataset.cols]; if(!spec)return;
+   const hist=spec.get(S), base=hist.reduce((a,b)=>a+b,0);
+   svg.innerHTML='';
+   const W=820,H=320,m={t:16,r:16,b:46,l:48},iw=W-m.l-m.r,ih=H-m.t-m.b;
+   const max=Math.max(1,...hist),n=hist.length,gap=10,bw=(iw-gap*(n-1))/n;
+   for(let i=0;i<=4;i++){const v=max/4*i,y=m.t+ih-(v/max)*ih;
+     svg.appendChild(el('line',{x1:m.l,y1:y,x2:W-m.r,y2:y,stroke:C.line2,'stroke-width':1}));
+     svg.appendChild(el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':11,fill:C.ink3,'font-family':'Inter'},Math.round(v)));}
+   hist.forEach((v,i)=>{const x=m.l+i*(bw+gap),h=(v/max)*ih,y=m.t+ih-h,col=i===0?C.moss:C.slate2;
+     svg.appendChild(el('rect',{x,y,width:bw,height:h,rx:3,fill:col}));
+     svg.appendChild(el('text',{x:x+bw/2,y:y-6,'text-anchor':'middle','font-size':11,'font-family':'Fraunces,serif','font-weight':600,fill:'#241F18'},fp(v,base)));
+     svg.appendChild(el('text',{x:x+bw/2,y:H-m.b+18,'text-anchor':'middle','font-size':11.5,fill:C.ink3,'font-family':'Inter'},labels[i]));});
+   svg.appendChild(el('text',{x:m.l+iw/2,y:H-6,'text-anchor':'middle','font-size':11.5,fill:C.ink3,'font-family':'Inter','font-weight':600,'letter-spacing':'.03em'},spec.axis));
+ });
 }
 
 /* ===== líneas ===== */
 function lineChart(svg,cfg){
  svg.innerHTML='';
- const W=820,H=380,m={t:20,r:22,b:40,l:46},iw=W-m.l-m.r,ih=H-m.t-m.b;
+ const vb=(svg.getAttribute('viewBox')||'0 0 820 380').split(' ').map(Number);
+ const W=vb[2],H=vb[3],m={t:20,r:22,b:40,l:46},iw=W-m.l-m.r,ih=H-m.t-m.b;
  const {xMin,xMax}=cfg;
  let yMax=cfg.yMax;if(!yMax){yMax=0;cfg.series.forEach(s=>s.pts.forEach(p=>{if(p[1]>yMax)yMax=p[1];}));yMax=yMax*1.1||1;}
  const stp=cfg.yStep||niceStep(yMax);yMax=Math.ceil(yMax/stp)*stp;if(cfg.yCap&&yMax>cfg.yCap)yMax=cfg.yCap;
@@ -654,15 +702,25 @@ function lineChart(svg,cfg){
 }
 const YR=i=>1990+i;
 function toPts(arr){return arr.map((v,i)=>[YR(i),v]);}
+function drawHitos(){
+ const h=document.querySelector('[data-line="hitos"]'); if(!h)return;
+ const G=PROGH[window.ST];
+ const vis=HCAT.filter(c=>!hitosHidden.has(c.k));
+ lineChart(h,{xMin:1990,xMax:2026,xStep:5,series:vis.map(c=>({name:c.l,color:c.c,pts:toPts(G[c.k]),w:2.6}))});
+ const leg=document.querySelector('[data-leg="hitos"]');
+ leg.innerHTML=HCAT.map(c=>`<i class="tog${hitosHidden.has(c.k)?' off':''}" data-k="${c.k}"><span class="ln" style="background:${c.c}"></span><span>${c.l}</span></i>`).join('');
+ leg.querySelectorAll('.tog').forEach(it=>it.addEventListener('click',()=>{const k=it.dataset.k;hitosHidden.has(k)?hitosHidden.delete(k):hitosHidden.add(k);drawHitos();}));
+}
 function toPtsE(arr){return arr.map((v,i)=>[i,v]);}
 function drawLines(P){
- const h=document.querySelector('[data-line="hitos"]');
- if(h){lineChart(h,{xMin:1990,xMax:2026,xStep:5,series:P.h.map((arr,i)=>({name:HLBL[i],color:HCOL[i],pts:toPts(arr),w:2,peak:true}))});
-   document.querySelector('[data-leg="hitos"]').innerHTML=HLBL.map((n,i)=>`<i><span class="ln" style="background:${HCOL[i]}"></span><span style="color:var(--ink2)">${n}</span></i>`).join('');}
+ drawHitos();
  const t=document.querySelector('[data-line="totObras"]');
- if(t){const pts=toPts(P.t);lineChart(t,{xMin:1990,xMax:2026,xStep:5,vlines:[{x:2001,label:'Crisis 01'},{x:2020,label:'Pandemia'},{x:2024,label:'Ajuste'}],shade:[2025,2026],
-   series:[{name:'Total',color:C.brick,pts,w:2.4,area:true},{name:'Tendencia',color:C.slate,pts:movMedian(pts,3),w:1.8,dash:true}]});
-   document.querySelector('[data-leg="totObras"]').innerHTML=`<i style="color:${C.brick}"><span class="ln" style="background:${C.brick}"></span><span style="color:var(--ink2)">Total de obras</span></i><i style="color:${C.slate}"><span class="ln dash"></span><span style="color:var(--ink2)">Tendencia (mediana móvil 3 años)</span></i>`;}
+ if(t){const pts=toPts(P.t);
+   const trend=linReg(pts.filter(p=>p[0]>=2004&&p[0]<=2023));
+   const trendPts=[];for(let y=2004;y<=2026;y++)trendPts.push([y,Math.max(0,trend.a+trend.b*y)]);
+   lineChart(t,{xMin:1990,xMax:2026,xStep:5,vlines:[{x:2001,label:'Crisis 01'},{x:2020,label:'Pandemia'},{x:2024,label:'Milei'}],
+   series:[{name:'Total',color:C.brick,pts,w:2.4,area:true},{name:'Esperada',color:C.slate,pts:trendPts,w:1.8,dash:true}]});
+   document.querySelector('[data-leg="totObras"]').innerHTML=`<i style="color:${C.brick}"><span class="ln" style="background:${C.brick}"></span><span style="color:var(--ink2)">Total de obras</span></i><i style="color:${C.slate}"><span class="ln dash"></span><span style="color:var(--ink2)">Tendencia esperada (patrón 2004-2023)</span></i>`;}
  const rt=document.querySelector('[data-line="ritmo"]');
  if(rt){lineChart(rt,{xMin:0,xMax:25,xStep:5,yStep:10,yCap:100,yFmt:v=>v+'%',
    series:[{name:'Todos',color:C.ink3,pts:toPtsE(P.r.a),w:1.6,dash:true},{name:'De cero',color:C.brick,pts:toPtsE(P.r.c),w:2.6},{name:'Ya tenía algo',color:C.slate,pts:toPtsE(P.r.g),w:2.6}]});
@@ -681,7 +739,8 @@ function computeMet(S,P){
   bPrim:fmtN(S.primTen.base), bTardia:fmtN(S.tardia.base), bTtipo:fmtN(tt.base),
   multi:pn(S.viviendas.multiPct), alq:pn(S.propVivienda.alqPct), alqN:fmtN(S.propVivienda.alquilada),
   med:comma(at.med), mean:comma(at.mean), anios0:pn(at.pct0), anios0N:fmtN(at.hist[0]),
-  primCvf:pn(S.primTen.cvfPct), tardiaCvf:S.tardia.base?pn(S.tardia.cvfPct):'—',
+  bMud:fmtN(MUD[window.ST].base), mudMed:comma(MUD[window.ST].med), mudMean:comma(MUD[window.ST].mean), mud0:pn(MUD[window.ST].pct0), mud0N:fmtN(MUD[window.ST].hist[0]),
+  primCvf:fp(S.primTen.CVF,S.primTen.base), tardiaCvf:S.tardia.base?pn(S.tardia.cvfPct):'—',
   pelado:fp(tt.pelado,tt.base), yaAlgo:fp(yaAlgo,tt.base),
   compPct:fp(S.adquisicion.compraron,S.adquisicion.base), cvfDoc:fp(S.documentacion.cvf,S.documentacion.base),
   ritmo0:pn(P.r.a[0]), ritmo0c:pn(P.r.c[0]), ritmo0g:pn(P.r.g[0])
@@ -742,7 +801,7 @@ const CMET=[
  {k:'alq',label:'Vive en alquiler',g:S=>S.propVivienda.alqPct,nb:S=>S.propVivienda.base,verb:'vive en alquiler'},
  {k:'cvf',label:'Tiene CVF',g:S=>pctv(S.documentacion.cvf,S.documentacion.base),nb:S=>S.documentacion.base,verb:'tiene CVF en el terreno'},
  {k:'pelado',label:'Empezó de cero (pelado)',g:S=>pctv(S.terrenoTipo.pelado,S.terrenoTipo.base),nb:S=>S.terrenoTipo.base,verb:'empezó de un terreno pelado'},
- {k:'primCvf',label:'CVF como 1ª tenencia',g:S=>S.primTen.cvfPct,nb:S=>S.primTen.base,verb:'tuvo el CVF como primera tenencia'},
+ {k:'primCvf',label:'CVF como 1ª tenencia',g:S=>pctv(S.primTen.CVF,S.primTen.base),nb:S=>S.primTen.base,verb:'tuvo el CVF como primera tenencia'},
  {k:'ritmo0',label:'Hace obra en el año de acceso',gp:st=>PROG[st].r.a[0],nb:S=>S.n,verb:'hace alguna obra en el año de acceso'}
 ];
 const CMP={dim:'estrato',metric:'casa',currentMetric:'casa'};
